@@ -33,27 +33,48 @@ import ReactDom from 'react-dom';
 
 // CSS
 import './index.css'
+// setup vars
+const books = [
+    {
+        id:1,
+        img:"https://images-na.ssl-images-amazon.com/images/I/81BdMSuI5ZS._AC_UL200_SR200,200_.jpg",
+        title: "The Last Thing He Told Me: A Novel",
+        author: "Laura Dave"
+    },
+
+    {
+        id:2,
+        img:"https://images-na.ssl-images-amazon.com/images/I/81BdMSuI5ZS._AC_UL200_SR200,200_.jpg",
+        title: "The Second Thing He Told Me: A Novel",
+        author: "Maura Davem"
+    }
+]
+
 function BookList() {
     return (
         <section className="booklist">
-            <Book />
+            {books.map((book) => {
+                return <Book key={book.id} {...book} />
+            })}
         </section>
     );
 }
 
-const author = 'Laura Dave';
 
-const Book = () => {
-    const title = 'The Last Thing He Told Me: A Novel';
+
+const Book = ({ img, title, author }) => {
+    
+    //const { img, title, author } = props;
 
     return (
         <article className="book">
-            <img src="https://images-na.ssl-images-amazon.com/images/I/81BdMSuI5ZS._AC_UL200_SR200,200_.jpg" alt="" />
+            <img src={img} alt="" />
             <h1>{title}</h1>
             <h4>{author.toUpperCase()}</h4>
         </article>
     );
 }
+
 // const Image = () => <img src="https://images-na.ssl-images-amazon.com/images/I/81BdMSuI5ZS._AC_UL200_SR200,200_.jpg" alt="" />
 
 // const Title = () => <h1>The Last Thing He Told Me: A Novel</h1>
